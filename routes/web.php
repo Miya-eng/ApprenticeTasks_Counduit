@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/editor', function () {
-    return view('create_article');
-});
+// Route::get('/editor', function () {
+//     return view('create_article');
+// });
+
+Route::get('/editor', [ArticleController::class, 'create'])->name('editor');
 
 Route::get('/editor/article-slug-here', function () {
     return view('edit_article');
