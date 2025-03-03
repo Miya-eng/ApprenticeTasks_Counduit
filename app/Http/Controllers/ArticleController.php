@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Article;
+
 class ArticleController extends Controller
 {
     /**
@@ -11,7 +13,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+        return view('home', compact('articles'));
     }
 
     /**
@@ -27,7 +30,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tagsArray = array_map('trim', explode(',', $request->tags));
+
+        $article = Article::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'content' => $request->input('content'),
+            'tags' => $tagsArray,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
