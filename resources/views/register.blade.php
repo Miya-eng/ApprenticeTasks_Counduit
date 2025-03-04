@@ -16,17 +16,18 @@
                     <li>That email is already taken</li>
                 </ul>
 
-                <form>
+                <form action="{{ route('register') }}" method="POST">
+                    @csrf
                     <fieldset class="form-group">
-                        <input class="form-control form-control-lg" type="text" placeholder="Username" />
+                        <input name="name" class="form-control form-control-lg" type="text" placeholder="Username" />
                     </fieldset>
                     <fieldset class="form-group">
-                        <input class="form-control form-control-lg" type="text" placeholder="Email" />
+                        <input name="email" class="form-control form-control-lg" type="text" placeholder="Email" />
                     </fieldset>
                     <fieldset class="form-group">
-                        <input class="form-control form-control-lg" type="password" placeholder="Password" />
+                        <input name="password" class="form-control form-control-lg" type="password" placeholder="Password" />
                     </fieldset>
-                    <button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+                    <button type="submit" class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
                 </form>
             </div>
         </div>

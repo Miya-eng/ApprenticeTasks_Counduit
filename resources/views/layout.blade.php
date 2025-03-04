@@ -15,6 +15,7 @@
         type="text/css" />
     <!-- Import the custom Bootstrap 4 theme from our hosted CDN -->
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
+    <script src="{{ asset('js/flash-message.js') }}"></script>
 </head>
 
 <body>
@@ -28,11 +29,16 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Sign in</a>
+                        <a class="nav-link" href="{{ route('login') }}">Sign in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Sign up</a>
+                        <a class="nav-link" href="{{ route('register') }}">Sign up</a>
                     </li>
+                    @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">Log out</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </nav>

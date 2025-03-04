@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -37,6 +38,7 @@ class ArticleController extends Controller
             'description' => $request->input('description'),
             'content' => $request->input('content'),
             'tags' => $tagsArray,
+            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('home');

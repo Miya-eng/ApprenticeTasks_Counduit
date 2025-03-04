@@ -11,6 +11,7 @@ class Article extends Model
         'description',
         'content',
         'tags',
+        'user_id',
     ];
 
     protected $casts = [
