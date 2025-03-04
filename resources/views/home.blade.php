@@ -36,7 +36,7 @@
                         </button>
                     </div>
                     @foreach ($articles as $article)
-                    <a href="/article/the-song-you" class="preview-link">
+                    <a href="{{ route('article', $article->id) }}" class="preview-link">
                         <h1>{{ $article->title }}</h1>
                         <p>{{ $article->description }}</p>
                         <span>Read more...</span>

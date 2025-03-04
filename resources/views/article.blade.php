@@ -6,7 +6,7 @@
 <div class="article-page">
     <div class="banner">
         <div class="container">
-            <h1>How to build webapps that scale</h1>
+            <h1>{{ $article->title }}</h1>
 
             <div class="article-meta">
                 <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
@@ -23,12 +23,16 @@
                     <i class="ion-heart"></i>
                     &nbsp; Favorite Post <span class="counter">(29)</span>
                 </button>
-                <button class="btn btn-sm btn-outline-secondary">
+                <a href="{{ route('article.edit', $article->id) }}" class="btn btn-sm btn-outline-secondary">
                     <i class="ion-edit"></i> Edit Article
-                </button>
-                <button class="btn btn-sm btn-outline-danger">
+                </a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $article->id }}').submit();" class="btn btn-sm btn-outline-danger">
                     <i class="ion-trash-a"></i> Delete Article
-                </button>
+                </a>
+                <form id="delete-form-{{ $article->id }}" action="{{ route('article.delete', $article->id) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
             </div>
         </div>
     </div>
@@ -37,13 +41,13 @@
         <div class="row article-content">
             <div class="col-md-12">
                 <p>
-                    Web development technologies have evolved at an incredible clip over the past few years.
+                    {{ $article->content }}
                 </p>
-                <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-                <p>It's a great solution for learning how other frameworks work.</p>
+                <h2 id="introducing-ionic">{{ $article->description }}</h2>
                 <ul class="tag-list">
-                    <li class="tag-default tag-pill tag-outline">realworld</li>
-                    <li class="tag-default tag-pill tag-outline">implementations</li>
+                    @foreach ($article->tags as $tag)
+                    <li class="tag-default tag-pill tag-outline">{{ $tag }}</li>
+                    @endforeach
                 </ul>
             </div>
         </div>

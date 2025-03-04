@@ -11,27 +11,30 @@
                     <li>That title is required</li>
                 </ul>
 
-                <form>
+                <form action="{{ route('article.update', $article->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <fieldset>
                         <fieldset class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Article Title" />
+                            <input type="text" name="title" class="form-control form-control-lg" value="{{ $article->title }}" placeholder="Article Title" />
                         </fieldset>
                         <fieldset class="form-group">
-                            <input type="text" class="form-control" placeholder="What's this article about?" />
+                            <input type="text" name="description" class="form-control" value="{{ $article->description }}" placeholder="What's this article about?" />
                         </fieldset>
                         <fieldset class="form-group">
                             <textarea
+                               name="content"
                                 class="form-control"
                                 rows="8"
-                                placeholder="Write your article (in markdown)"></textarea>
+                                placeholder="Write your article (in markdown)">{{ $article->content }}</textarea>
                         </fieldset>
                         <fieldset class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter tags" />
+                            <input type="text" name="tags" class="form-control" value="{{ implode(',', $article->tags) }}" placeholder="Enter tags（カンマ区切りで入力してください）" />
                             <div class="tag-list">
                                 <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
                             </div>
                         </fieldset>
-                        <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+                        <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
                             Publish Article
                         </button>
                     </fieldset>

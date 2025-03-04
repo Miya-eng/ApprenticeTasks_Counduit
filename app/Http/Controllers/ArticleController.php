@@ -47,7 +47,8 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('article', compact('article'));
     }
 
     /**
@@ -55,7 +56,8 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('edit_article', compact('article'));
     }
 
     /**
@@ -63,7 +65,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $tagsArray = array_map('trim', explode(',', $request->tags));
+
+        $article->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'content' => $request->input('content'),
+            'tags' => $tagsArray,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -71,6 +84,9 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return redirect()->route('home');
     }
 }
