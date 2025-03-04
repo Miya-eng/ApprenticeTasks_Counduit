@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::resource('article', TodoController::class);ルートが自動で定義される
@@ -19,3 +20,8 @@ Route::get('/article/{id}/article-slug-here', [ArticleController::class, 'show']
 
 Route::delete('/article/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
 
+Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
+
+Route::get('/register', [AuthenticationController::class, 'register'])->name('register');
+
+Route::get('/profile', [AuthenticationController::class, 'profile'])->name('profile');
