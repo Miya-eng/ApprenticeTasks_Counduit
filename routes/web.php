@@ -20,8 +20,18 @@ Route::get('/article/{id}/article-slug-here', [ArticleController::class, 'show']
 
 Route::delete('/article/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
 
-Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
 
-Route::get('/register', [AuthenticationController::class, 'register'])->name('register');
+Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
+
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [AuthenticationController::class, 'profile'])->name('profile');

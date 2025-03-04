@@ -3,6 +3,11 @@
 @section('title', 'Home')
 
 @section('content')
+@if(session('success'))
+<div id="flash-message" class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="home-page">
     <div class="banner">
         <div class="container">
@@ -28,8 +33,12 @@
                 <div class="article-preview">
                     <div class="article-meta">
                         <div class="info">
+                            @if (Auth::check())
+                            <a href="{{ route('profile', Auth::user()->id) }}" class="author">{{ Auth::user()->name }}</a>
+                            @else
                             <a href="/profile/albert-pai" class="author">Albert Pai</a>
                             <span class="date">January 20th</span>
+                            @endif
                         </div>
                         <button class="btn btn-outline-primary btn-sm pull-xs-right">
                             <i class="ion-heart"></i> 32
@@ -48,8 +57,9 @@
                     </a>
                     @endforeach
                 </div>
-
+                @if (Auth::check())
                 <a href="{{ route('editor') }}">Create</a>
+                @endif
             </div>
 
             <div class="col-md-3">

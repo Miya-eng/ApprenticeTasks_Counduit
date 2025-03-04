@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('content');
             $table->json('tags');
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
