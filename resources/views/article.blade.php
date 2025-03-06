@@ -9,22 +9,13 @@
             <h1>{{ $article->title }}</h1>
 
             <div class="article-meta">
-                <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
                 <div class="info">
-                    @if (Auth::check())
-                    <a href="{{ route('profile', Auth::user()->id) }}" class="author">{{ Auth::user()->name }}</a>
-                    @else
-                    <a href="/profile/eric-simons" class="author">Eric Simons</a>
+                    <a href="{{ route('article', $article->id) }}" class="author">{{ $article->user->name }}</a>
                     <span class="date">January 20th</span>
-                    @endif
                 </div>
                 <button class="btn btn-sm btn-outline-secondary">
                     <i class="ion-plus-round"></i>
-                    @if (Auth::check())
-                    &nbsp; Follow {{ Auth::user()->name }} <span class="counter">(10)</span>
-                    @else
-                    &nbsp; Follow Eric Simons <span class="counter">(10)</span>
-                    @endif
+                    &nbsp; Follow {{ $article->user->name }} <span class="counter">(10)</span>
                 </button>
                 &nbsp;&nbsp;
                 <button class="btn btn-sm btn-outline-primary">
