@@ -1,3 +1,53 @@
+# Conduit
+
+今回は Counduit と同じ見た目・機能のサイトを Laravel で実装します。
+
+## ステップ1
+
+以下のページの HTML と CSS を実装し、ページを作成。また、各ページにアクセスできるようにします。
+
+- [Home]
+- [Create/Edit Article]
+- [Article]
+
+## ステップ2
+
+以下の機能を実装し、動作するようにします。
+
+1. Home 画面の記事が表示されている下に「Create」ボタンを配置する。ボタンを押下したときに Create 画面に遷移する。
+2. Create 画面で項目(タイトル, サブタイトル, 記事内容, タグ)を入力して「Publish Article」を押下したときに、DB に保存されて HOME 画面の3つ目の記事として表示される。(以降, Create するたびに4つ目、5つ目として表示される)
+3. Home 画面の記事をクリックすると、その記事の Article 画面に遷移する。
+4. Article 画面で「Edit Article」ボタンを押下すると、Edit 画面に遷移する。また、各項目には記事作成時に保存されている情報を DB から取得し表示されている状態にする。
+5. Edit 画面で項目を編集して「Publish Article」を押下したときに、DB に保存され、HOME 画面の記事も更新される。
+6. 「Delete Article」ボタンを押下したときに DB から記事が削除され、HOME 画面からも削除される。
+
+## ステップ3
+
+以下のページの HTML と CSS を実装し、ページを作成。また、各ページにアクセスできるようにします。
+
+- [Authentication](Sign In), (Sign Up)
+
+
+## ステップ4
+
+以下の機能を実装し、動作するようにします。
+
+1. Authentication(Sign In)画面でメールアドレスとパスワードを入力して「Sign In」ボタンを押下したときに、ログイン処理が実行される。
+2. Authentication(Sign Up)画面でメールアドレスとパスワードを入力して「Sign Up」ボタンを押下したときに、ユーザー登録処理が実行される。
+3. ログイン処理、ユーザー登録処理が成功した場合は、HOME画面に遷移する。
+4. Home 画面、Article 画面でログイン情報を利用して、記事に著者が表示されるようにする。
+5. Article 画面でログイン情報を利用して、認証機能を実装する。著者のみ「Edit Article」ボタンを表示するようにして著者だけが記事を編集できるようにする。
+6. Article 画面でログイン情報を利用して、認証機能を実装する。著者のみ「Delete Article」ボタンを表示するようにして著者だけが記事を削除できるようにする。
+7. Home 画面に表示される記事の最大数を5件にして、ページネーションを実装し、ページネーションをクリックすると次の5件が表示されるようにする。
+
+## 追加ステップ
+ログアウト機能の実装。
+Profileページを追加し、記事を書いたユーザーの情報を閲覧できるようにする。その際、ユーザーは他のユーザーの記事を編集できないように注意。
+Your Feed（自分の記事のみ表示）, Global Feed（全ユーザーの記事を表示）の機能を追加。
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
