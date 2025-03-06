@@ -35,3 +35,5 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 Route::get('/profile/{id}', [AuthenticationController::class, 'profile'])->name('profile');
+
+Route::get('/your-feed', [ArticleController::class, 'yourFeed'])->name('your-feed');

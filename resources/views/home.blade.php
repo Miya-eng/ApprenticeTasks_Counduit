@@ -22,10 +22,10 @@
                 <div class="feed-toggle">
                     <ul class="nav nav-pills outline-active">
                         <li class="nav-item">
-                            <a class="nav-link" href="">Your Feed</a>
+                            <a class="nav-link {{ request()->is('your-feed') ? 'active' : '' }}" href="{{ route('your-feed') }}">Your Feed</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="">Global Feed</a>
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Global Feed</a>
                         </li>
                     </ul>
                 </div>
