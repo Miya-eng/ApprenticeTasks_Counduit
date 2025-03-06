@@ -91,4 +91,17 @@ class ArticleController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function yourFeed()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $articles = Article::where('user_id', Auth::id())
+                            ->latest()
+                            ->paginate(5);
+
+        return view('home', compact('articles'));
+    }
 }
