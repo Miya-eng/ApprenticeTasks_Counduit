@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
@@ -17,4 +18,9 @@ class Article extends Model
     protected $casts = [
         'tags' => 'array',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id'); //`user_id` で `users.id` を参照
+    }
 }

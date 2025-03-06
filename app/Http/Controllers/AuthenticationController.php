@@ -29,13 +29,14 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        return redirect()->route('home')->with('success', 'ログイン成功！');
+        return redirect()->route('login')->with('success', 'ログイン成功！');
 
     }
 
-    public function profile() {
-        $user = Auth::user();
-        return view('profile', compact('user'));
+    public function profile(string $id) {
+        $user = User::findOrfail($id);
+        $articles = $user->articles()->latest()->paginate(5);
+        return view('profile', compact('user', 'articles'));
     }
 
     public function logout() {

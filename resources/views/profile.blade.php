@@ -1,44 +1,55 @@
 @extends('layout')
 
-@section('title', 'Home')
+@section('title', 'Profile')
 
 @section('content')
-@if(session('success'))
-<div id="flash-message" class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-<div class="home-page">
-    <div class="banner">
+<div class="profile-page">
+    <div class="user-info">
         <div class="container">
-            <h1 class="logo-font">conduit</h1>
-            <p>A place to share your knowledge.</p>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 offset-md-1">
+                    <h4>{{ $user->name }}</h4>
+                    <p>
+                        Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from
+                        the Hunger Games
+                    </p>
+                    <button class="btn btn-sm btn-outline-secondary action-btn">
+                        <i class="ion-plus-round"></i>
+                        &nbsp; Follow {{ $user->name }}
+                    </button>
+                    @if (Auth::check() && Auth::user()->id === $user->id)
+                    <button class="btn btn-sm btn-outline-secondary action-btn">
+                        <i class="ion-gear-a"></i>
+                        &nbsp; Edit Profile Settings
+                    </button>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="container page">
+    <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <div class="feed-toggle">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="articles-toggle">
                     <ul class="nav nav-pills outline-active">
                         <li class="nav-item">
-                            <a class="nav-link" href="">Your Feed</a>
+                            <a class="nav-link active" href="">My Articles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="">Global Feed</a>
+                            <a class="nav-link" href="">Favorited Articles</a>
                         </li>
                     </ul>
                 </div>
-
                 @foreach ($articles as $article)
                 <div class="article-preview">
                     <div class="article-meta">
                         <div class="info">
-                            <a href="{{ route('profile', $article->user_id) }}" class="author">{{ $article->user->name }}</a>
+                            <a href="" class="author">{{ $article->user->name }}</a>
                             <span class="date">January 20th</span>
                         </div>
                         <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                            <i class="ion-heart"></i> 32
+                            <i class="ion-heart"></i> 29
                         </button>
                     </div>
                     <a href="{{ route('article', $article->id) }}" class="preview-link">
@@ -53,10 +64,6 @@
                     </a>
                 </div>
                 @endforeach
-                
-                @if (Auth::check())
-                <a class="btn btn-outline-primary btn pull-xs-right" href="{{ route('editor') }}">Create</a>
-                @endif
 
                 <ul class="pagination">
                     @for ($i = 1; $i <= $articles->lastPage(); $i++)
@@ -65,25 +72,6 @@
                     </li>
                     @endfor
                 </ul>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <div class="sidebar">
-                    <p>Popular Tags</p>
-
-                    <div class="tag-list">
-                        <a href="" class="tag-pill tag-default">programming</a>
-                        <a href="" class="tag-pill tag-default">javascript</a>
-                        <a href="" class="tag-pill tag-default">emberjs</a>
-                        <a href="" class="tag-pill tag-default">angularjs</a>
-                        <a href="" class="tag-pill tag-default">react</a>
-                        <a href="" class="tag-pill tag-default">mean</a>
-                        <a href="" class="tag-pill tag-default">node</a>
-                        <a href="" class="tag-pill tag-default">rails</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

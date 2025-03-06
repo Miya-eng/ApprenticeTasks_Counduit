@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(5);
         return view('home', compact('articles'));
     }
 
@@ -41,7 +41,7 @@ class ArticleController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', '記事を作成しました!');
     }
 
     /**

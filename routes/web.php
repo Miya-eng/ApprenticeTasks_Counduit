@@ -34,4 +34,4 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-Route::get('/profile', [AuthenticationController::class, 'profile'])->name('profile');
+Route::get('/profile/{id}', [AuthenticationController::class, 'profile'])->name('profile');
